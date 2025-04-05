@@ -79,7 +79,7 @@ public class WeaponsController : ControllerBase
             if (weaponsData[i][2].ToString() == request.WeaponJson.WeaponName)
             {
                 int rowIndex = i + 2;
-                int isCrafted = bool.TryParse(weaponsData[i][3].ToString(), out bool aux) ? 1 : 0;
+                bool isCrafted = bool.TryParse(weaponsData[i][3].ToString(), out bool aux) ? true : false;
                 await gss.UpdateCell($"Weapons!D{rowIndex}", isCrafted);
                 break;
             }

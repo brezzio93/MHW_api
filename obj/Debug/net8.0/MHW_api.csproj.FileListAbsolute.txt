@@ -40,3 +40,4 @@ C:\www\MHW_api\obj\Debug\net8.0\refint\MHW_api.dll
 C:\www\MHW_api\obj\Debug\net8.0\MHW_api.pdb
 C:\www\MHW_api\obj\Debug\net8.0\MHW_api.genruntimeconfig.cache
 C:\www\MHW_api\obj\Debug\net8.0\ref\MHW_api.dll
+C:\www\MHW_api\obj\Debug\net8.0\MHW_api.sourcelink.json
