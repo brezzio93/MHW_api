@@ -1,4 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
@@ -7,21 +8,22 @@ builder.Services.AddCors(options =>
                         .AllowAnyHeader()
                         .AllowAnyMethod());
 });
-
-var app = builder.Build();
-app.UseRouting();
-app.UseHttpsRedirection();
-app.UseCors("AllowAngularApp"); // Apply CORS policy
-app.UseAuthorization();
-app.MapControllers();
-
-// builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var app = builder.Build();
+
+// Middleware
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseRouting();
+app.UseHttpsRedirection();
+app.UseCors("AllowAngularApp"); // Apply CORS policy
+app.UseAuthorization();
+app.MapControllers();
 
 app.Run();
