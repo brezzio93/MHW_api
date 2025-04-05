@@ -15,7 +15,7 @@ app.UseCors("AllowAngularApp"); // Apply CORS policy
 app.UseAuthorization();
 app.MapControllers();
 
-builder.Services.AddEndpointsApiExplorer();
+// builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
