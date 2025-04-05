@@ -10,8 +10,18 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 app.UseRouting();
+app.UseHttpsRedirection();
 app.UseCors("AllowAngularApp"); // Apply CORS policy
 app.UseAuthorization();
 app.MapControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.Run();
