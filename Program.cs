@@ -1,5 +1,12 @@
 var builder = WebApplication.CreateBuilder(args);
 
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.ListenAnyIP(Int32.Parse(port));
+});
+
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {

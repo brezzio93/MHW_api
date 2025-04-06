@@ -1,7 +1,14 @@
 C:\www\MHW_api\publish\MHW_api.exe
+C:\www\MHW_api\publish\publish\web.config
 C:\www\MHW_api\publish\appsettings.Development.json
 C:\www\MHW_api\publish\appsettings.json
+C:\www\MHW_api\publish\appsettings.Production.json
 C:\www\MHW_api\publish\mhw-db-455000-7628e6edfaa5.json
+C:\www\MHW_api\publish\publish\appsettings.Development.json
+C:\www\MHW_api\publish\publish\appsettings.json
+C:\www\MHW_api\publish\publish\mhw-db-455000-7628e6edfaa5.json
+C:\www\MHW_api\publish\publish\MHW_api.deps.json
+C:\www\MHW_api\publish\publish\MHW_api.runtimeconfig.json
 C:\www\MHW_api\publish\MHW_api.dll
 C:\www\MHW_api\publish\MHW_api.deps.json
 C:\www\MHW_api\publish\MHW_api.runtimeconfig.json

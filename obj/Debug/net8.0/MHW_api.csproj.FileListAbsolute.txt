@@ -48,3 +48,10 @@ C:\www\MHW_api\bin\Debug\net8.0\publish\appsettings.json
 C:\www\MHW_api\bin\Debug\net8.0\publish\mhw-db-455000-7628e6edfaa5.json
 C:\www\MHW_api\bin\Debug\net8.0\publish\MHW_api.deps.json
 C:\www\MHW_api\bin\Debug\net8.0\publish\MHW_api.runtimeconfig.json
+C:\www\MHW_api\bin\Debug\net8.0\publish\publish\web.config
+C:\www\MHW_api\bin\Debug\net8.0\publish\appsettings.Production.json
+C:\www\MHW_api\bin\Debug\net8.0\publish\publish\appsettings.Development.json
+C:\www\MHW_api\bin\Debug\net8.0\publish\publish\appsettings.json
+C:\www\MHW_api\bin\Debug\net8.0\publish\publish\mhw-db-455000-7628e6edfaa5.json
+C:\www\MHW_api\bin\Debug\net8.0\publish\publish\MHW_api.deps.json
+C:\www\MHW_api\bin\Debug\net8.0\publish\publish\MHW_api.runtimeconfig.json
