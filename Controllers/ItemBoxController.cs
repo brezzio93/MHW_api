@@ -16,6 +16,7 @@ public class ItemBoxController : ControllerBase
     [HttpGet("getItemBox")]
     public async Task<IActionResult> GetData()
     {
+        try{
         // Fetch raw data from both sheets
         var itemboxData = await gss.GetItemboxData();
         var returnData = new List<ItemBox>();
@@ -32,6 +33,11 @@ public class ItemBoxController : ControllerBase
         }
 
         return Ok(returnData);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { message = "Error fetching data from Google Sheets.", error = ex.Message });
+        }
     }
 
     [HttpPost("updateItembox")]
