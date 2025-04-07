@@ -20,7 +20,7 @@ public class WeaponsController : ControllerBase
         {
             returnData.Add(new Weapons
             {
-                IdCampaign = item[0].ToString(),
+                IdCampaign = int.Parse(item[0].ToString()),
                 WeaponName = item[1].ToString(),
                 WeaponCrafted = bool.TryParse(item[2].ToString(), out bool aux) ? aux : false
             });
