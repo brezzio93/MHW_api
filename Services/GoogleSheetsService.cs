@@ -40,7 +40,7 @@ public class GoogleSheetsService
     }
 
     public Task<IList<IList<object>>> GetItemboxData() => GetSheetData("Itembox!A2:D100");
-    public Task<IList<IList<object>>> GetMaterialsData() => GetSheetData("Materials!A2:B100");
+    public Task<IList<IList<object>>> GetMaterialsData() => GetSheetData("Materials!A2:C100");
     public Task<IList<IList<object>>> GetArmorsData() => GetSheetData("Armors!A2:D100");
     public Task<IList<IList<object>>> GetWeaponsData() => GetSheetData("Weapons!A2:D100");
     public Task<IList<IList<object>>> GetCampaignData() => GetSheetData("Campaign!A2:E100");

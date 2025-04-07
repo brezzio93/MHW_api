@@ -56,6 +56,22 @@ public class WeaponsController : ControllerBase
             }
         }
 
+        bool isCrafted = false;
+        // Update weapon crafted status
+        for (int i = 0; i < weaponsData.Count; i++)
+        {
+            if (weaponsData[i][2].ToString() == request.WeaponJson.WeaponName && weaponsData[i][1].ToString() == request.IdCampaign)
+            {
+                isCrafted = bool.TryParse(weaponsData[i][3].ToString(), out bool aux) ? true : false;
+                break;
+            }
+        }
+
+        if (!isCrafted)
+        {
+            await gss.UpdateCell($"Weapons!D{weaponsData.Count + 2}", true);
+        }
+
         // Subtract materials from Itembox
         foreach (var material in request.WeaponJson.Materials)
         {
@@ -69,19 +85,6 @@ public class WeaponsController : ControllerBase
                     await gss.UpdateCell($"Itembox!D{rowIndex}", newQuantity);
                     break;
                 }
-            }
-        }
-
-
-        // Update armor crafted count
-        for (int i = 0; i < weaponsData.Count; i++)
-        {
-            if (weaponsData[i][2].ToString() == request.WeaponJson.WeaponName)
-            {
-                int rowIndex = i + 2;
-                bool isCrafted = bool.TryParse(weaponsData[i][3].ToString(), out bool aux) ? true : false;
-                await gss.UpdateCell($"Weapons!D{rowIndex}", isCrafted);
-                break;
             }
         }
 
