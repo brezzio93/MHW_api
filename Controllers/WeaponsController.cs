@@ -20,10 +20,9 @@ public class WeaponsController : ControllerBase
         {
             returnData.Add(new Weapons
             {
-                Id = item[0].ToString(),
-                IdCampaign = item[1].ToString(),
-                WeaponName = item[2].ToString(),
-                WeaponCrafted = bool.TryParse(item[3].ToString(), out bool aux) ? aux : false
+                IdCampaign = item[0].ToString(),
+                WeaponName = item[1].ToString(),
+                WeaponCrafted = bool.TryParse(item[2].ToString(), out bool aux) ? aux : false
             });
         }
 
@@ -69,7 +68,9 @@ public class WeaponsController : ControllerBase
 
         if (!isCrafted)
         {
-            await gss.UpdateCell($"Weapons!D{weaponsData.Count + 2}", true);
+            await gss.UpdateCell($"Weapons!A{weaponsData.Count + 2}", request.IdCampaign);
+            await gss.UpdateCell($"Weapons!B{weaponsData.Count + 2}", request.WeaponJson.WeaponName);
+            await gss.UpdateCell($"Weapons!C{weaponsData.Count + 2}", true);
         }
 
         // Subtract materials from Itembox

@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 
 public class Weapons
 {
-    public string Id { get; set; }
     public string IdCampaign { get; set; }
     public string WeaponName { get; set; }
     public bool WeaponCrafted { get; set; }
