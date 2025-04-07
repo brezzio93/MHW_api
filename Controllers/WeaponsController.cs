@@ -68,7 +68,7 @@ public class WeaponsController : ControllerBase
 
         if (!isCrafted)
         {
-            await gss.UpdateCell($"Weapons!A{weaponsData.Count + 2}", request.IdCampaign);
+            await gss.UpdateCell($"Weapons!A{weaponsData.Count + 2}", int.Parse(request.IdCampaign));
             await gss.UpdateCell($"Weapons!B{weaponsData.Count + 2}", request.WeaponJson.WeaponName);
             await gss.UpdateCell($"Weapons!C{weaponsData.Count + 2}", true);
         }
