@@ -20,10 +20,9 @@ public class ArmorsController : ControllerBase
         {
             armorsArray.Add(new Armors
             {
-                Id = item[0].ToString(),
-                IdCampaign = int.Parse(item[1].ToString()),
-                ArmorName = item[2].ToString(),
-                AmountCrafted = int.TryParse(item[3].ToString(), out int aux) ? aux : 0
+                IdCampaign = int.Parse(item[0].ToString()),
+                ArmorName = item[1].ToString(),
+                AmountCrafted = int.TryParse(item[2].ToString(), out int aux) ? aux : 0
             });
         }
 
