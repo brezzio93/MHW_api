@@ -21,7 +21,7 @@ public class ArmorsController : ControllerBase
             armorsArray.Add(new Armors
             {
                 Id = item[0].ToString(),
-                IdCampaign = item[1].ToString(),
+                IdCampaign = int.Parse(item[1].ToString()),
                 ArmorName = item[2].ToString(),
                 AmountCrafted = int.TryParse(item[3].ToString(), out int aux) ? aux : 0
             });
@@ -56,6 +56,30 @@ public class ArmorsController : ControllerBase
             }
         }
 
+        bool isCrafted = false;
+        // Update armor crafted count
+        for (int i = 0; i < armorsData.Count; i++)
+        {
+            if (armorsData[i][2].ToString() == request.ArmorJson.ArmorName && armorsData[i][1].ToString() == request.IdCampaign)
+            {
+                isCrafted = true;
+                int rowIndex = i + 2;
+                int currentCrafted = int.TryParse(armorsData[i][3].ToString(), out int crafted) ? crafted : 0;
+                int newCrafted = currentCrafted + 1;
+
+                await gss.UpdateCell($"armors!D{rowIndex}", newCrafted);
+                return Ok(new { message = $"{request.ArmorJson.ArmorName} crafted successfully.", newCrafted });
+            }
+        }
+
+        //If the armor has not beign registered on this campaign, we create one
+        if (!isCrafted)
+        {
+            await gss.UpdateCell($"Armors!A{armorsData.Count + 2}", int.Parse(request.IdCampaign));
+            await gss.UpdateCell($"Armors!B{armorsData.Count + 2}", request.ArmorJson.ArmorName);
+            await gss.UpdateCell($"Armors!C{armorsData.Count + 2}", 1);
+        }
+
         // Subtract materials from Itembox
         foreach (var material in request.ArmorJson.Materials)
         {
@@ -72,19 +96,6 @@ public class ArmorsController : ControllerBase
             }
         }
 
-        // Update armor crafted count
-        for (int i = 0; i < armorsData.Count; i++)
-        {
-            if (armorsData[i][2].ToString() == request.ArmorJson.ArmorName)
-            {
-                int rowIndex = i + 2;
-                int currentCrafted = int.TryParse(armorsData[i][3].ToString(), out int crafted) ? crafted : 0;
-                int newCrafted = currentCrafted + 1;
-
-                await gss.UpdateCell($"armors!D{rowIndex}", newCrafted);
-                return Ok(new { message = $"{request.ArmorJson.ArmorName} crafted successfully.", newCrafted });
-            }
-        }
 
         return NotFound(new { message = "Armor not found." });
     }

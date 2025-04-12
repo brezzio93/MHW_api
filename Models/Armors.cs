@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 public class Armors
 {
     public string Id { get; set; }
-    public string IdCampaign { get; set; }
+    public int IdCampaign { get; set; }
     public string ArmorName { get; set; }
     public int AmountCrafted { get; set; }
 }
