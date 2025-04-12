@@ -77,6 +77,7 @@ public class ArmorsController : ControllerBase
             await gss.UpdateCell($"Armors!A{armorsData.Count + 2}", int.Parse(request.IdCampaign));
             await gss.UpdateCell($"Armors!B{armorsData.Count + 2}", request.ArmorJson.ArmorName);
             await gss.UpdateCell($"Armors!C{armorsData.Count + 2}", 1);
+            return Ok(new { message = $"{request.ArmorJson.ArmorName} crafted successfully." });
         }
 
         // Subtract materials from Itembox
@@ -94,7 +95,6 @@ public class ArmorsController : ControllerBase
                 }
             }
         }
-
 
         return NotFound(new { message = "Armor not found." });
     }
