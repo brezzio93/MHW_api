@@ -43,9 +43,8 @@ public class CampaignController : ControllerBase
         {
             if (id == int.Parse(item[0].ToString()))
             {
-                missionLog.Add(new MissionLog{
-                    IdCampaign = int.Parse(item[0].ToString()),
-                    CampaignName = item[1].ToString(),
+                missionLog.Add(new MissionLog
+                {
                     Days = int.Parse(item[2].ToString()),
                     Mission = item[3].ToString(),
                     MissionStatus = item[4].ToString(),
