@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MHW_api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e74fe237ee174c1a049d33932d8877883de1983e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc5d79f9e28c872be64e69e837b0550ff155d1b6")]
 [assembly: System.Reflection.AssemblyProductAttribute("MHW_api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MHW_api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
