@@ -16,23 +16,24 @@ public class ItemBoxController : ControllerBase
     [HttpGet("getItemBox")]
     public async Task<IActionResult> GetData()
     {
-        try{
-        // Fetch raw data from both sheets
-        var itemboxData = await gss.GetItemboxData();
-        var returnData = new List<ItemBox>();
-
-        foreach (var row in itemboxData)
+        try
         {
-            returnData.Add(new ItemBox
-            {
-                Id = row[0].ToString(),
-                IdCampaign = row[1].ToString(),
-                MaterialName = row[2]?.ToString(),
-                MaterialQuantity = int.TryParse(row[3].ToString(), out int quantity) ? quantity : 0,
-            });
-        }
+            // Fetch raw data from both sheets
+            var itemboxData = await gss.GetItemboxData();
+            var returnData = new List<ItemBox>();
 
-        return Ok(returnData);
+            foreach (var row in itemboxData)
+            {
+                returnData.Add(new ItemBox
+                {
+                    Id = row[0].ToString(),
+                    IdCampaign = row[1].ToString(),
+                    MaterialName = row[2]?.ToString(),
+                    MaterialQuantity = int.TryParse(row[3].ToString(), out int quantity) ? quantity : 0,
+                });
+            }
+
+            return Ok(returnData);
         }
         catch (Exception ex)
         {
@@ -73,5 +74,44 @@ public class ItemBoxController : ControllerBase
         }
 
         return StatusCode(500, new { message = "Failed to update Itembox." });
+    }
+
+    [HttpPost("updateItemboxBulk")]
+    public async Task<IActionResult> UpdateItemboxBulk([FromBody] List<ItemboxArrayRequest> itemsToUpdate)
+    {
+        var itembox = await gss.GetItemboxData(); // Assuming this gets Itembox!A2:D100
+
+        foreach (var entry in itemsToUpdate)
+        {
+            bool found = false;
+
+            for (int i = 0; i < itembox.Count; i++)
+            {
+                var row = itembox[i];
+
+                if (
+                    row[1].ToString() == entry.IdCampaign.ToString() &&
+                    row[2].ToString().Equals(entry.Name, StringComparison.OrdinalIgnoreCase))
+                {
+                    // Parse the current quantity
+                    int currentQty = int.TryParse(row[3].ToString(), out int q) ? q : 0;
+                    int newQty = currentQty + entry.Qty;
+
+                    int rowIndex = i + 2; // because we skipped header
+                    await gss.UpdateCell($"Itembox!D{rowIndex}", newQty);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                await gss.UpdateCell($"Itembox!B{itembox.Count + 2}", entry.IdCampaign);
+                await gss.UpdateCell($"Itembox!C{itembox.Count + 2}", entry.Qty);
+                await gss.UpdateCell($"Itembox!D{itembox.Count + 2}", entry.Name);
+            }
+        }
+
+        return Ok(new { message = "All items updated successfully." });
     }
 }

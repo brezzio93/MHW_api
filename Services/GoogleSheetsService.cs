@@ -8,8 +8,25 @@ public class GoogleSheetsService
     private static readonly string[] Scopes = { SheetsService.Scope.Spreadsheets };
     private static readonly string ApplicationName = "MHW_api";
     private static readonly string SpreadsheetId = "1NJwEZ0YgfYzvQl0MV9qwqeHv2QfRruj3zrgbp2iJ0AY";
+    private static readonly string CredentialPath = "mhw-db.json";
     private readonly SheetsService _service;
 
+    //LocalTest Only
+    // public GoogleSheetsService()
+    // {
+    //     GoogleCredential credential;
+    //     using (var stream = new FileStream(CredentialPath, FileMode.Open, FileAccess.Read))
+    //     {
+    //         credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes);
+    //     }
+
+    //     _service = new SheetsService(new BaseClientService.Initializer()
+    //     {
+    //         HttpClientInitializer = credential,
+    //         ApplicationName = ApplicationName,
+    //     });
+    // }
+    
     public GoogleSheetsService()
     {
         var jsonCredentials = Environment.GetEnvironmentVariable("GOOGLE_CREDENTIALS_JSON");
